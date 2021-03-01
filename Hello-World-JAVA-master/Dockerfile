@@ -1,4 +1,4 @@
-FROM java:8
+FROM tomcat:alpine
 EXPOSE 6000
 MAINTAINER kiranbir
 ADD /target/devopssampleapplication.war /usr/kiranbirkaur/tomcat/webapps/devops.war
