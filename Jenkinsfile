@@ -48,14 +48,14 @@ pipeline{
         stage('Docker push'){
             steps{
                  dir('Hello-World-JAVA-master/'){
-                     bat 'docker push kiranbirkaur/i-kiranbirkaur-master%BUILD_NUMBER% '
+                     bat 'docker push kiranbirkaur/i-kiranbirkaur-master%BUILD_NUMBER%'
                  }
             }
         }
         stage('Docker deployment'){
             steps{
                  dir('Hello-World-JAVA-master/'){
-                     bat 'docker run --name kiranbirkaur/i-kb-%BUILD_NUMBER% -d -p 6000:7000 kiranbirkaur/i-kiranbirkaur-master%BUILD_NUMBER%'
+                     bat 'docker run -d -p 6000:7000 kiranbirkaur/i-kiranbirkaur-master%BUILD_NUMBER%'
                  }
             }
         }
