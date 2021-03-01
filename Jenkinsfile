@@ -28,13 +28,14 @@ pipeline{
         }
         stage('Artifactory'){
             steps{
+                script{
                def server = Artifactory.server('122@arr');
                def mvv = Artifactory.newMavenBuild();
                mvv.resolver server:server,  releaseRepo:'libs-release',snapshotRepo:'libs-snapshot'
                mvv.deployer server:server, releaseRepo:'libs-release-local',snapshotRepo:'libs-snapshot-local'
                mvv.tool='Maven3'
                def buildInfo= mvv.run pom: 'Hello-World-JAVA-master/pom.xml', goals: '-U clean install'
-               server.publishBuildInfo buildInfo
+               server.publishBuildInfo buildInfo}
             }
         }
         stage('Docker image'){
